@@ -2,18 +2,21 @@
 #include <stdlib.h>
 #include <string.h>
 #include "linked_list.h"
+#include <assert.h>
 
 // Function to create a new ListNode
 ListNode *createNode(const char *word) {
-    ListNode *newNode = (ListNode *)malloc(sizeof(ListNode));  // Allocate memory for the node
+    ListNode *newNode = (ListNode *)malloc(sizeof(ListNode));
+    assert(newNode != NULL);  // Ensure memory allocation was successful
     if (!newNode) {
-        fprintf(stderr, "Memory allocation failed\n");  // Print error message if allocation fails
-        exit(EXIT_FAILURE);  // Terminate program
+        fprintf(stderr, "Memory allocation failed\n");
+        exit(EXIT_FAILURE);
     }
-    strcpy(newNode->word, word);  // Copy the word to the node
-    newNode->next = NULL;  // Initialize next pointer to NULL
-    return newNode;  // Return the newly created node
+    strcpy(newNode->word, word);
+    newNode->next = NULL;
+    return newNode;
 }
+
 
 // Function to display the contents of a linked list
 void displayList(ListNode *listHead) {

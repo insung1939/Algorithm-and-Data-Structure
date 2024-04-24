@@ -4,20 +4,23 @@
 #include <stdbool.h>
 #include "trie.h"
 #include "linked_list.h"
+#include <assert.h>
 
 // Function to create a new TrieNode
 TrieNode *trie_createNode(void) {
-    TrieNode *root = (TrieNode *)malloc(sizeof(TrieNode));  // Allocate memory for the root node
+    TrieNode *root = (TrieNode *)malloc(sizeof(TrieNode));
+    assert(root != NULL);  // Ensure memory allocation was successful
     if (!root) {
-        fprintf(stderr, "Memory allocation failed\n");  // Print error message if allocation fails
-        exit(EXIT_FAILURE);  // Terminate program
+        fprintf(stderr, "Memory allocation failed\n");
+        exit(EXIT_FAILURE);
     }
-    root->isEndOfWord = false;  // Initialize isEndOfWord flag to false
+    root->isEndOfWord = false;
     for (int i = 0; i < ALPHABET_SIZE; i++) {
-        root->children[i] = NULL;  // Initialize all child pointers to NULL
+        root->children[i] = NULL;
     }
-    return root;  // Return the root node
+    return root;
 }
+
 
 // Function to create a new ListNode
 ListNode *list_createNode(const char *word) {
